@@ -13,6 +13,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {A11yModule} from '@angular/cdk/a11y';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { DataService } from './services/data.service';
+import { HttpClientModule } from '@angular/common/http';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -30,9 +34,12 @@ import {MatIconModule} from '@angular/material/icon';
     MatDatepickerModule,
     A11yModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    HttpClientModule,
+    NgxMaterialTimepickerModule
   ],
-  providers: [],
+  providers: [DataService],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA 
   ],

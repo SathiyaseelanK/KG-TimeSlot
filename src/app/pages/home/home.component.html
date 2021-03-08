@@ -8,7 +8,7 @@
                 Queu
             </span>
         </label>
-        <div class="tab bg-body rounded shadow-sm" cdkDropList (cdkDropListDropped)="drop($event)">
+        <div class="tab bg-body rounded shadow-sm" cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="patients.length > 0">
             <div class="row">
                 <div class="col-sm-4 text-center">
                     <div class="pt-3">
@@ -37,8 +37,7 @@
 
                 </div>
             </div>
-            <div class="row row-border bg-white align-items-center"
-                *ngFor="let patient of patients; let index=index; let odd=odd;" cdkDrag>
+            <div class="row row-border bg-white align-items-center" *ngFor="let patient of patients; let index=index; let odd=odd;" cdkDrag>
                 <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
                 <div class="col-sm-4">
                     <app-profile [showBadge]=true [order]="index+1" [badgeOrder]="odd" [image]="patient.image"

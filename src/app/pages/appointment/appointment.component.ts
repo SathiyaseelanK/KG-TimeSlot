@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ModalService } from './../../services/modal.service';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { CalenderHeaderComponent } from 'src/app/components/calender-header/calender-header.component';
 
@@ -8,15 +9,17 @@ import { CalenderHeaderComponent } from 'src/app/components/calender-header/cale
   styleUrls: ['./appointment.component.scss']
 })
 export class AppointmentComponent implements OnInit {
-
+  @ViewChild('modalHeader') modalHeader: TemplateRef<{}> | string= '' ;
+  @ViewChild('modalContent') modalContent: TemplateRef<{}> | string = '';
+  @ViewChild('modalFooter') modalFooter: TemplateRef<{}> | string = '';
   breadCrumpList = [
     {name: "Home", route: '/home'},
     {name: "Appointment", route: '/appointment'}
   ];
   selectedDate = new Date();
   startAt = new Date();
-  minDate = new Date('2019/09/14');
-  maxDate = new Date(new Date().setMonth(new Date().getMonth() + 1));
+  minDate = new Date();
+  maxDate = new Date(new Date().setMonth(new Date().getMonth()+1));
   year: any;
   DayAndDate: string | undefined;
 
@@ -26,12 +29,20 @@ export class AppointmentComponent implements OnInit {
 
   datesToBeHighlighted: number[] =[11,15,16];
 
-  constructor() {
+  constructor(private modalService: ModalService) {
     this.onSelect(this.selectedDate);
    }
 
   ngOnInit(): void {
    
+  }
+
+  showModal(): void  {
+    this.modalService.create({
+      modalTitle: this.modalHeader,
+      modalText: this.modalContent,
+      modalFooter: this.modalFooter
+    })
   }
 
   onSelect(event: any) {
