@@ -118,7 +118,7 @@
       </div>
     </div>
     <div class="col-12 pt-3">
-      <p class='text-danger' *ngIf="timeSlotForm.invalid">Please provide valid information</p>
+      <p class='text-danger' *ngIf="timeSlotForm.invalid && timeSlotForm.touched">Please provide valid information</p>
     </div>
   </div>
   <div class="row align-items-center" *ngIf="added">
@@ -128,7 +128,7 @@
   </form>
 </ng-template>
 <ng-template #modalAppointmentFooter>
-  <div class="row align-items-center"  *ngIf="added">
+  <div class="row align-items-center"  *ngIf="!added">
     <div class="col-12"><button class="btn btn-primary" (click)="onSubmitAppointment()">Add Appointment</button></div>
   </div>
 </ng-template>
